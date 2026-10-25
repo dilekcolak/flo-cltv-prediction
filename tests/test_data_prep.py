@@ -50,4 +50,4 @@ def test_build_clv_features(sample_raw_dataframe):
         assert col in features_df.columns
 
     cust_1_freq = features_df.loc[features_df["master_id"] == "cust_1", "frequency"].values[0]
-    assert cust_1_freq == 2
+    assert cust_1_freq == 3

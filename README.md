@@ -21,21 +21,21 @@ FLO CLTV Prediction vaka çalışmasından hareketle eğitim amacıyla geliştir
 ```text
 flo-cltv-prediction/
 ├── data/
-│   ├── raw/                 # flo_data_20k.csv buraya konulmalı (Git'e eklenmez)
-│   └── processed/           # Oluşturulan çıktı dosyaları (Git'e eklenmez)
+│   ├── raw/                  # Ham veri seti (Git'e eklenmez)
+│   └── processed/            # Analiz çıktıları (Git'e eklenmez)
 ├── src/
-│   ├── clv_features.py     # CLV model değişkenlerinin hazırlanması
-│   ├── data_prep.py        # Veri hazırlama ve aykırı değer işlemleri
-│   ├── hypothesis_tests.py # Korelasyon temelli tanı analizleri
-│   ├── models.py           # BG-NBD ve Gamma-Gamma modelleri
-│   └── segmentation.py     # Segmentasyon ve aksiyon önerileri
+│   ├── clv_features.py       # CLV model değişkenleri
+│   ├── data_prep.py          # Veri ön işleme
+│   ├── hypothesis_tests.py   # İstatistiksel analizler
+│   ├── models.py             # BG-NBD ve Gamma-Gamma
+│   └── segmentation.py       # Müşteri segmentasyonu
 ├── tests/
 │   ├── test_data_prep.py
 │   └── test_models.py
-├── main.py                 # Uçtan uca analiz akışı
-├── requirements.txt
-├── .gitignore
-└── README.md
+├── main.py                   # Ana analiz pipeline'ı
+├── requirements.txt          # Python bağımlılıkları
+├── .gitignore                # Git hariç tutma kuralları
+└── README.md                 # Proje dokümantasyonu
 ```
 
 ## Kurulum

@@ -3,7 +3,7 @@ import pytest
 from src.models import CLVPredictionEngine
 
 @pytest.fixture
-def mock_clv_fatures_df():
+def mock_clv_features_df():
     data = {
         "master_id": [f"cust_{i}" for i in range(1, 11)],
         "frequency": [2, 3, 5, 2, 4, 6, 3, 2, 8, 4],
@@ -13,11 +13,11 @@ def mock_clv_fatures_df():
     }
     return pd.DataFrame(data)
 
-def test_model_fit_and_generate_predictions(mock_clv_fatures_df):
+def test_model_fit_and_generate_predictions(mock_clv_features_df):
     engine = CLVPredictionEngine(bg_penalizer=0.001, gg_penalizer=0.01)
-    engine.fit(mock_clv_fatures_df)
+    engine.fit(mock_clv_features_df)
 
-    results_df = engine.genarate_full_clv_dataframe(mock_clv_fatures_df, clv_time_months=6)
+    results_df = engine.genarate_full_clv_dataframe(mock_clv_features_df, clv_time_months=6)
     assert "p_alive" in results_df.columns
     assert "exp_sales_3_months" in results_df.columns
     assert "exp_sales_6_months" in results_df.columns
@@ -33,8 +33,8 @@ def test_model_fit_and_generate_predictions(mock_clv_fatures_df):
 
     assert (results_df["exp_sales_6_months"] >= results_df["exp_sales_3_months"]).all()
 
-def test_model_unfitted_raises_error(mock_clv_fatures_df):
+def test_model_unfitted_raises_error(mock_clv_features_df):
     unfitted_engine = CLVPredictionEngine()
 
     with pytest.raises(ValueError):
-        unfitted_engine.predict_purchases(mock_clv_fatures_df)
+        unfitted_engine.predict_purchases(mock_clv_features_df)
